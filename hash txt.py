@@ -1,4 +1,7 @@
 from hashlib import md5, sha256, sha224, sha384, sha1
+import hashlib
+import string
+import itertools
 
 def getHashfromfile(file):
     hash0 = sha256()
@@ -81,30 +84,27 @@ print("")
 
 # Descriptografia 
 
-import hashlib
-import string
-import itertools
 
-def md5_hash(hash1):
+def sha256_hash(hash0):
     
-    return hashlib.md5(hash1.encode()).hexdigest()
+    return hashlib.sha256(hash0.encode()).hexdigest()
 
-def brute_force_md5(hash_to_crack, length=10):
+def brute_force_sha256(hash_to_crack, length=10):
     
     characters = string.ascii_lowercase + string.digits  
     for length in range(1, length + 1): 
         for attempt in itertools.product(characters, repeat=length):
             candidate = ''.join(attempt)
-            if md5_hash(candidate) == hash_to_crack:
+            if sha256_hash(candidate) == hash_to_crack:
                 return candidate
     return None
 
 
 if __name__ == "__main__":
     
-    hash_md5 = hash1  
+    hash_sha256 = hash0  
     
-    result = brute_force_md5(hash_md5, length=10)  
+    result = brute_force_sha256(hash_sha256, length=10)  
     if result:
         print(f"Esse hash significa: {result}")
     else:
