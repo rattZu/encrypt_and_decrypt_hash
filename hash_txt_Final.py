@@ -64,7 +64,7 @@ def main():
         print("")
         
     else:
-        print("Deu não man")
+        print("Deu não man :(")
         print("")
 
 if __name__ == "__main__":
