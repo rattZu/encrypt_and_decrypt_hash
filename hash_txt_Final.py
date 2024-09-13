@@ -1,9 +1,9 @@
 import time
 from hashlib import md5, sha256, sha224, sha384, sha1
 
-def delay_print(text, delay=0.03):
+def delay_print(pato, delay=0.03):
    
-    for char in text:
+    for char in pato:
         print(char, end='', flush=True)
         time.sleep(delay)
     print()  
@@ -23,22 +23,16 @@ def get_hash_from_file(file, hash_func):
     return hash_obj.hexdigest()
 
 def print_hash(name, hash_value):
-    print(f"\nCriptografia em {name}: ", end='')
+    print(f"Criptografia em {name}: ", end='')
     delay_print(hash_value)
 
 def main():
    
-    hash_functions = [
-        (sha256, "sha256"),
-        (md5, "md5"),
-        (sha224, "sha224"),
-        (sha384, "sha384"),
-        (sha1, "sha1")
-    ]
-
+    hash_functions = [(sha256, "sha256"),(md5, "md5"),(sha224, "sha224"),(sha384, "sha384"),(sha1, "sha1") ]
+    
     for hash_func, name in hash_functions:
-        hash_value = get_hash_from_file("pato.txt", hash_func)
-        print_hash(name, hash_value)
+        hash_valor = get_hash_from_file("pato.txt", hash_func)
+        print_hash(name, hash_valor)
     
  # Descriptografia
     import hashlib
@@ -48,7 +42,7 @@ def main():
     def md5_hash(hash1):
         return hashlib.md5(hash1.encode()).hexdigest()
 
-    def brute_force_md5(hash_to_crack, length=10):
+    def brute_force_md5(hash_to_crack, length=4):
         characters = string.ascii_lowercase + string.digits  
         for length in range(1, length + 1): 
             for attempt in itertools.product(characters, repeat=length):
@@ -58,8 +52,9 @@ def main():
         return None
 
     hash_md5 = get_hash_from_file("pato.txt", md5)
-    resultado = brute_force_md5(hash_md5, length=10)
+    resultado = brute_force_md5(hash_md5, length=4)
     if resultado:
+        print("")
         print(f"Esse hash significa: {resultado}")
         print("")
         
