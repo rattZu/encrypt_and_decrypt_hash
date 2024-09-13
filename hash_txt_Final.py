@@ -55,7 +55,7 @@ def main():
     resultado = brute_force_md5(hash_md5, length=4)
     if resultado:
         print("")
-        print(f"Esse hash significa (☞ﾟヮﾟ)☞: {resultado}")
+        print(f"Aqui está o hash descriptografado (☞ﾟヮﾟ)☞   {resultado}")
         print("")
         
     else:
