@@ -35,7 +35,7 @@ def main():
     print("")
     hash_recebido = input("Digite o hash recebido: ").strip()
     print("")
-    algoritmo = input("Digite o algoritmo de hash (por exemplo, sha256, md5): ").strip().lower()
+    algoritmo = input("Digite o algoritmo de hash: ").strip().lower()
     print("")
 
     if not os.path.isfile(caminho_arquivo):
@@ -54,6 +54,4 @@ def main():
         print("--------------------------------------------------------------")
 
 if __name__ == "__main__":
-    main()
-
-
+    main()     
