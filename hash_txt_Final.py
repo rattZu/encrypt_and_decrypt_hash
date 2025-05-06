@@ -55,11 +55,11 @@ def main():
     resultado = brute_force_md5(hash_md5, length=4)
     if resultado:
         print("")
-        print(f"Aqui está o hash descriptografado (☞ﾟヮﾟ)☞   {resultado}")
+        print(f"hash: {resultado}")
         print("")
         
     else:
-        print("Deu n man (˘･_･˘)")
+        print("Error")
         print("")
 
 if __name__ == "__main__":
