@@ -1,46 +1,19 @@
-abc1
-
 #include <iostream>
-#include <thread>
-#include <chrono>
-#ifdef _WIN32
-#include <conio.h> // Para _kbhit no Windows
-#else
-#include <unistd.h>
-#include <termios.h>
-#include <fcntl.h>
-#endif
-
-// Função auxiliar para Linux (detectar tecla)
-#ifndef _WIN32
-int _kbhit() {
-    termios oldt, newt;
-    int ch;
-    int oldf;
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-    ch = getchar();
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-    fcntl(STDIN_FILENO, F_SETFL, oldf);
-    if (ch != EOF) {
-        ungetc(ch, stdin);
-        return 1;
-    }
-    return 0;
-}
-#endif
+#include <conio.h>      // _kbhit() e _getch()
+#include <thread>       // std::this_thread::sleep_for
+#include <chrono>       // std::chrono::milliseconds
 
 int main() {
     std::cout << "Pressione qualquer tecla para parar...\n";
-    
+
     while (true) {
         std::cout << "azul" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
-        if (_kbhit()) break; // Sai quando detectar uma tecla
+
+        if (_kbhit()) { // Se uma tecla foi pressionada
+            _getch();   // Captura a tecla (evita ficar repetindo)
+            break;
+        }
     }
 
     std::cout << "Programa encerrado!" << std::endl;
