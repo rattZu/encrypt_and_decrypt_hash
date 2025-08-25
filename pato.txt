@@ -5,4 +5,23 @@ int main() {
         printf("azul\n");
     }
     return 0;
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <windows.h> // Sleep()
+
+int main() {
+    for (int i = 0; i < 20; i++) {
+        printf("azul\n");
+        Sleep(300); // pausa de 300 milissegundos (0.3s)
+    }
+    return 0;
 }
