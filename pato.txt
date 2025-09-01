@@ -1,27 +1,27 @@
-#include <stdio.h>
+import threading
+import time
+import msvcrt  # Funciona no Windows
 
-int main() {
-    for (int i = 0; i < 20; i++) {
-        printf("azul\n");
-    }
-    return 0;
+# Variável de controle
+parar = False
 
+def verificar_tecla():
+    global parar
+    print("Pressione qualquer tecla para parar...\n")
+    while True:
+        if msvcrt.kbhit():  # Verifica se alguma tecla foi pressionada
+            msvcrt.getch()  # Lê a tecla pressionada
+            parar = True
+            break
 
+# Cria uma thread para não travar o loop principal
+thread = threading.Thread(target=verificar_tecla)
+thread.daemon = True
+thread.start()
 
+# Loop principal que imprime "azul" até o usuário parar
+while not parar:
+    print("azul")
+    time.sleep(0.3)  # Pequena pausa para não floodar o terminal
 
-
-
-
-
-
-
-#include <stdio.h>
-#include <windows.h> // Sleep()
-
-int main() {
-    for (int i = 0; i < 20; i++) {
-        printf("azul\n");
-        Sleep(300); // pausa de 300 milissegundos (0.3s)
-    }
-    return 0;
-}
+print("\nPrograma finalizado!")
