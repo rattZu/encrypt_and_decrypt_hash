@@ -25,3 +25,44 @@ while not parar:
     time.sleep(0.3)  # Pequena pausa para não floodar o terminal
 
 print("\nPrograma finalizado!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import os
+
+# Comando para abrir um novo terminal no Windows e rodar o loop
+comando = (
+    'start cmd /k "python -c \"'
+    'import threading, time, msvcrt; '
+    'parar=False; '
+    'def verificar(): '
+    '    global parar; '
+    '    print(\'Pressione qualquer tecla para parar...\\n\'); '
+    '    while True: '
+    '        if msvcrt.kbhit(): '
+    '            msvcrt.getch(); '
+    '            parar=True; '
+    '            break; '
+    'threading.Thread(target=verificar, daemon=True).start(); '
+    'while not parar: '
+    '    print(\'azul\'); '
+    '    time.sleep(0.3); '
+    'print(\'\\nPrograma finalizado!\')'
+    '\""'
+)
+
+os.system(comando)
